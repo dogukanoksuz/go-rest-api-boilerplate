@@ -1,17 +1,15 @@
 package main
 
 import (
-	"log"
+	"os"
+	"strconv"
 
-	"github.com/dogukanoksuz/go-rest-api-example/app/controllers"
-	"github.com/gofiber/fiber/v2"
+	"github.com/dogukanoksuz/go-rest-api-example/pkg/utils"
 	_ "github.com/joho/godotenv/autoload"
 )
 
 func main() {
-	app := fiber.New()
+	port, _ := strconv.Atoi(os.Getenv("APP_PORT"))
 
-	app.Get("/", controllers.Hello)
-
-	log.Fatal(app.Listen(":3000"))
+	utils.CreateServer(port)
 }
