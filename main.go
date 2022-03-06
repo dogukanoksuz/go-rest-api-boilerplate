@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 
+	"github.com/dogukanoksuz/go-rest-api-example/app/controllers"
 	"github.com/gofiber/fiber/v2"
 	_ "github.com/joho/godotenv/autoload"
 )
@@ -10,11 +11,7 @@ import (
 func main() {
 	app := fiber.New()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.JSON(fiber.Map{
-			"message": "Hello, World!",
-		})
-	})
+	app.Get("/", controllers.Hello)
 
 	log.Fatal(app.Listen(":3000"))
 }
