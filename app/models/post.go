@@ -1,8 +1,17 @@
 package models
 
+import (
+	"github.com/google/uuid"
+	"gorm.io/gorm"
+)
+
 type Post struct {
-	ID      uint `gorm:"primary_key"`
+	ID      string `gorm:"primary_key"`
 	Title   string
-	Slug    string
 	Content string `gorm:"type:text"`
+}
+
+func (post *Post) BeforeCreate(tx *gorm.DB) error {
+	post.ID = uuid.NewString()
+	return nil
 }
