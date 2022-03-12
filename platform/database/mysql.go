@@ -8,9 +8,9 @@ import (
 	"gorm.io/gorm"
 )
 
-var DB *gorm.DB
+var Conn *gorm.DB
 
-func InitDatabase() error {
+func Init() error {
 	var err error
 
 	dsn := fmt.Sprintf(
@@ -22,7 +22,7 @@ func InitDatabase() error {
 		os.Getenv("DB_NAME"),
 	)
 
-	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	Conn, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
 		return err
