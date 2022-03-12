@@ -17,3 +17,4 @@ jobs:
         goarch: amd64
         binary_name: server
         extra_files: README.md
+        release_name: release-linux-amd64
