@@ -3,14 +3,24 @@ package database
 import (
 	"fmt"
 	"os"
+	"sync"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-var Conn *gorm.DB
+var once sync.Once
+var connection *gorm.DB
 
-func Init() error {
+func Connection() *gorm.DB {
+	once.Do(func() {
+		connection = initialize()
+	})
+
+	return connection
+}
+
+func initialize() *gorm.DB {
 	var err error
 
 	dsn := fmt.Sprintf(
@@ -22,10 +32,10 @@ func Init() error {
 		os.Getenv("DB_NAME"),
 	)
 
-	Conn, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	connection, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {
-		return err
+		return nil
 	}
-	return nil
+	return connection
 }

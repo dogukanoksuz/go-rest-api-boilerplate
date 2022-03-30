@@ -8,7 +8,7 @@ import (
 
 func Index(ctx *fiber.Ctx) error {
 	posts := []models.Post{}
-	database.Conn.Find(&posts)
+	database.Connection().Find(&posts)
 
 	return ctx.JSON(posts)
 }
