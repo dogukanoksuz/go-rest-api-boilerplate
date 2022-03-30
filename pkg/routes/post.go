@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/dogukanoksuz/go-rest-api-example/app/controllers/post"
+	"github.com/dogukanoksuz/go-rest-api-boilerplate/app/controllers/post"
 	"github.com/gofiber/fiber/v2"
 )
 

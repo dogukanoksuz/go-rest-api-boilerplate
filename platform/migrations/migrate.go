@@ -1,8 +1,8 @@
 package migrations
 
 import (
-	"github.com/dogukanoksuz/go-rest-api-example/app/models"
-	"github.com/dogukanoksuz/go-rest-api-example/platform/database"
+	"github.com/dogukanoksuz/go-rest-api-boilerplate/app/models"
+	"github.com/dogukanoksuz/go-rest-api-boilerplate/platform/database"
 )
 
 func Migrate() {
