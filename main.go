@@ -4,14 +4,17 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/dogukanoksuz/go-rest-api-example/pkg/utils"
-	"github.com/dogukanoksuz/go-rest-api-example/platform/migrations"
+	"github.com/dogukanoksuz/go-rest-api-boilerplate/pkg/utils"
+	"github.com/dogukanoksuz/go-rest-api-boilerplate/platform/migrations"
+	"github.com/gofiber/fiber/v2"
 	_ "github.com/joho/godotenv/autoload"
 )
 
 func main() {
-	// Application initialization
-	migrations.Migrate()
+	if !fiber.IsChild() {
+		// Application initialization
+		migrations.Migrate()
+	}
 
 	port, _ := strconv.Atoi(os.Getenv("APP_PORT"))
 

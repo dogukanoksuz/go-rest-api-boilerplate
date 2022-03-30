@@ -4,14 +4,18 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/dogukanoksuz/go-rest-api-example/pkg/middleware"
-	"github.com/dogukanoksuz/go-rest-api-example/pkg/routes"
+	"github.com/dogukanoksuz/go-rest-api-boilerplate/pkg/middleware"
+	"github.com/dogukanoksuz/go-rest-api-boilerplate/pkg/routes"
+	"github.com/dogukanoksuz/go-rest-api-boilerplate/platform/server"
 	"github.com/gofiber/fiber/v2"
 )
 
 func CreateServer(port int) {
 	// Create Fiber App
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		Prefork:      true,
+		ErrorHandler: server.ErrorHandler,
+	})
 
 	// Initialize Logger
 	file := middleware.Logger(app)
