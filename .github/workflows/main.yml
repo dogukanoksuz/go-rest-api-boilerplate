@@ -18,8 +18,8 @@ jobs:
           go get -u && go mod tidy
           go build -o rest-server
     - name: Create Zip
-        run: |
-          zip -r /tmp/rest-server-${{ github.run_number }}.zip rest-server
+      run: |
+        zip -r /tmp/rest-server-${{ github.run_number }}.zip rest-server
     - name: Release
       id: create_release
       uses: softprops/action-gh-release@v1
