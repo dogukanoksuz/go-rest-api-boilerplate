@@ -1,4 +1,4 @@
-# Golang REST API Example 
+# Golang REST API Boilerplate
 
 This project is an example of how can we create REST API's with Golang using Gofiber.
 
