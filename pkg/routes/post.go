@@ -6,18 +6,21 @@ import (
 )
 
 func PostRoutes(app *fiber.App) {
+	// Post group
+	postGroup := app.Group("/posts")
+
 	// List All Posts
-	app.Get("/posts", post.Index)
+	postGroup.Get("/", post.Index)
 
 	// Show Post
-	app.Get("/post/:id", post.Show)
+	postGroup.Get("/:id", post.Show)
 
 	// Create Post
-	app.Post("/post", post.Create)
+	postGroup.Post("/", post.Create)
 
 	// Update Post
-	app.Post("/post/:id", post.Update)
+	postGroup.Post("/:id", post.Update)
 
 	// Delete Post
-	app.Delete("/post/:id", post.Delete)
+	postGroup.Delete("/:id", post.Delete)
 }
