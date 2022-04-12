@@ -12,6 +12,12 @@ func Create(ctx *fiber.Ctx) error {
 		return err
 	}
 
+	if len(post.Content) < 1 {
+		return ctx.Status(400).JSON(fiber.Map{
+			"message": "Content is required",
+		})
+	}
+
 	if err := database.Connection().Create(&post).Error; err != nil {
 		return err
 	}
