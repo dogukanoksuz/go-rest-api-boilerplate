@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/dogukanoksuz/go-rest-api-boilerplate/app/models"
+	"github.com/dogukanoksuz/go-rest-api-boilerplate/internal/database"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -18,7 +19,10 @@ func TestIndex(t *testing.T) {
 
 	// Create fiber app for testing purposes
 	app := fiber.New()
-	app.Get("/", Index)
+	controller := &PostController{
+		DB: database.Connection(),
+	}
+	app.Get("/", controller.Index)
 
 	// Tests struct
 	tests := []struct {

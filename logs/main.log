@@ -1,10 +1,1 @@
 26723 200 - GET /posts
-26723 200 - GET /posts
-26723 200 - GET /post/ada05b38-cd40-451d-a06a-73e986855cbe
-31941 200 - GET /
-31941 404 - GET /favicon.ico
-31941 404 - GET /post
-31941 200 - GET /posts
-31941 500 - GET /posts/12312123
-31941 500 - GET /posts/12312123
-31941 500 - GET /posts/12312123

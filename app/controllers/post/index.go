@@ -2,13 +2,17 @@ package post
 
 import (
 	"github.com/dogukanoksuz/go-rest-api-boilerplate/app/models"
-	"github.com/dogukanoksuz/go-rest-api-boilerplate/platform/database"
 	"github.com/gofiber/fiber/v2"
+	"gorm.io/gorm"
 )
 
-func Index(ctx *fiber.Ctx) error {
+type PostController struct {
+	DB *gorm.DB
+}
+
+func (p *PostController) Index(ctx *fiber.Ctx) error {
 	posts := []models.Post{}
-	database.Connection().Find(&posts)
+	p.DB.Find(&posts)
 
 	return ctx.JSON(posts)
 }

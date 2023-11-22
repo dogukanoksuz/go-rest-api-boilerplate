@@ -2,11 +2,10 @@ package post
 
 import (
 	"github.com/dogukanoksuz/go-rest-api-boilerplate/app/models"
-	"github.com/dogukanoksuz/go-rest-api-boilerplate/platform/database"
 	"github.com/gofiber/fiber/v2"
 )
 
-func Update(ctx *fiber.Ctx) error {
+func (p *PostController) Update(ctx *fiber.Ctx) error {
 	request := &models.Post{}
 
 	if err := ctx.BodyParser(&request); err != nil {
@@ -15,12 +14,12 @@ func Update(ctx *fiber.Ctx) error {
 
 	post := &models.Post{}
 
-	err := database.Connection().First(&post, "id = ?", ctx.Params("id")).Error
+	err := p.DB.First(&post, "id = ?", ctx.Params("id")).Error
 	if err != nil {
 		return err
 	}
 
-	err = database.Connection().Model(&post).Updates(&models.Post{
+	err = p.DB.Model(&post).Updates(&models.Post{
 		Title:   request.Title,
 		Content: request.Content,
 	}).Error

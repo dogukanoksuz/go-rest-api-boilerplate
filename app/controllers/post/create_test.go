@@ -7,6 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/dogukanoksuz/go-rest-api-boilerplate/internal/database"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -18,7 +19,10 @@ func TestCreate(t *testing.T) {
 
 	// Create fiber app for testing purposes
 	app := fiber.New()
-	app.Post("/", Create)
+	controller := &PostController{
+		DB: database.Connection(),
+	}
+	app.Post("/", controller.Create)
 
 	// Tests struct
 	tests := []struct {
